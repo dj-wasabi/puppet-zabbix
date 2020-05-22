@@ -16,7 +16,11 @@ $DB['USER']     = '<%= @database_user %>';
 $DB['PASSWORD'] = '<%= @database_password %>';
 
 // SCHEMA is relevant only for IBM_DB2 database
+<% if @database_schema -%>
+$DB['SCHEMA'] = '<%= @database_schema %>';
+<% else -%>
 $DB['SCHEMA'] = '';
+<% end -%>
 
 $ZBX_SERVER      = '<%= @zabbix_server %>';
 $ZBX_SERVER_PORT = '<%= @zabbix_listenport %>';
