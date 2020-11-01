@@ -90,7 +90,7 @@ class Puppet::Provider::Zabbix < Puppet::Provider
   end
 
   def transform_to_array_hash(key, value_array)
-    value_array.map { |a| { key => a } }
+    value_array.map { |a| { key => a.to_s } }
   end
 
   # Is it a number?

@@ -22,6 +22,7 @@ class zabbix::params {
       $manage_choco             = false
       $zabbix_package_agent     = 'zabbix-agent'
       $agent_configfile_path    = '/etc/zabbix/zabbix_agentd.conf'
+      $default_pskfile_path     = '/etc/zabbix/tlspskfile.key'
       $agent_config_owner       = 'zabbix'
       $agent_zabbix_user        = 'zabbix'
       $agent_config_group       = 'zabbix'
@@ -53,6 +54,7 @@ class zabbix::params {
       $manage_choco             = false
       $zabbix_package_agent     = 'zabbix-agent'
       $agent_configfile_path    = '/etc/zabbix/zabbix_agentd.conf'
+      $default_pskfile_path     = '/etc/zabbix/tlspskfile.key'
       $agent_config_owner       = 'zabbix-agent'
       $agent_zabbix_user        = 'zabbix-agent'
       $agent_config_group       = 'zabbix-agent'
@@ -72,6 +74,7 @@ class zabbix::params {
       $manage_choco             = false
       $zabbix_package_agent     = 'zabbix-agent'
       $agent_configfile_path    = '/etc/zabbix_agentd.conf'
+      $default_pskfile_path     = '/etc/zabbix_tlspskfile.key'
       $agent_config_owner       = 'zabbix'
       $agent_zabbix_user        = 'zabbix'
       $agent_config_group       = 'zabbix'
@@ -91,6 +94,7 @@ class zabbix::params {
       $manage_choco             = false
       $zabbix_package_agent     = 'zabbix'
       $agent_configfile_path    = '/etc/zabbix/zabbix_agentd.conf'
+      $default_pskfile_path     = '/etc/zabbix/tlspskfile.key'
       $agent_config_owner       = 'zabbix'
       $agent_zabbix_user        = 'zabbix'
       $agent_config_group       = 'zabbix'
@@ -107,6 +111,7 @@ class zabbix::params {
       $zabbix_package_agent    = 'zabbix-agent'
       $zabbix_package_provider = 'chocolatey'
       $agent_configfile_path   = 'C:/ProgramData/zabbix/zabbix_agentd.conf'
+      $default_pskfile_path    = 'C:/ProgramData/zabbix/tlspskfile.key'
       $agent_config_owner      = undef
       $agent_zabbix_user       = undef
       $agent_config_group      = undef
@@ -124,6 +129,7 @@ class zabbix::params {
       $manage_choco             = false
       $zabbix_package_agent     = 'zabbix-agent'
       $agent_configfile_path    = '/etc/zabbix/zabbix_agentd.conf'
+      $default_pskfile_path     = '/etc/zabbix/tlspskfile.key'
       $agent_config_owner       = 'zabbix'
       $agent_zabbix_user        = 'zabbix'
       $agent_config_group       = 'zabbix'
@@ -318,10 +324,13 @@ class zabbix::params {
   $agent_tlsconnect                         = undef
   $agent_tlscrlfile                         = undef
   $agent_tlskeyfile                         = undef
+  $agent_tlspsk                             = undef
   $agent_tlspskfile                         = undef
   $agent_tlspskidentity                     = undef
   $agent_tlsservercertissuer                = undef
   $agent_tlsservercertsubject               = undef
+  $agent_tlscertissuer                      = undef
+  $agent_tlscertsubject                     = undef
   $agent_unsafeuserparameters               = '0'
   $agent_use_ip                             = true
   $agent_userparameter                      = undef
@@ -348,6 +357,7 @@ class zabbix::params {
     $agent_logfile                          = '/var/log/zabbix/zabbix_agentd.log'
     $agent_logfilesize                      = '100'
   }
+  $agent_purge_templates                    = true
 
   # Proxy specific params
   $proxy_allowroot                          = '0'

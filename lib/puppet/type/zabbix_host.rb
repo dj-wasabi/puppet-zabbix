@@ -24,6 +24,34 @@ Puppet::Type.newtype(:zabbix_host) do
     end
   end
 
+  def munge_encryption(value)
+    case value
+    when 1, 'none', :none
+      1
+    when 2, 'psk', :psk
+      2
+    when 4, 'cert', :cert
+      4
+    else
+      raise(Puppet::Error, 'munge_encryption only takes none, psk or cert')
+    end
+  end
+
+  def munge_interfacetype(value)
+    case value
+    when 1, 'agent', :agent
+      1
+    when 2, 'SNMP', :snmp
+      2
+    when 3, 'IPMI', :ipmi
+      3
+    when 4, 'JMX', :jmx
+      4
+    else
+      raise(Puppet::Error, 'munge_interfacetype only takes agent (or 1), SNMP (or 2), IPMI (or 3), JMX (or 4)')
+    end
+  end
+
   newparam(:hostname, namevar: true) do
     desc 'FQDN of the machine.'
   end
@@ -41,6 +69,17 @@ Puppet::Type.newtype(:zabbix_host) do
 
     validate do |_value|
       raise(Puppet::Error, 'interfaceid is read-only and is only available via puppet resource.')
+    end
+  end
+
+  newproperty(:interfacetype) do
+    desc 'Type of interface to create.'
+    def insync?(is)
+      is.to_i == should.to_i
+    end
+
+    munge do |value|
+      @resource.munge_interfacetype(value)
     end
   end
 
@@ -106,6 +145,54 @@ Puppet::Type.newtype(:zabbix_host) do
 
   newproperty(:proxy) do
     desc 'Whether it is monitored by an proxy or not.'
+  end
+
+  newproperty(:tls_connect) do
+    desc 'Connections to host.'
+    def insync?(is)
+      is.to_i == should.to_i
+    end
+
+    munge do |value|
+      @resource.munge_encryption(value)
+    end
+  end
+
+  newproperty(:tls_accept) do
+    desc 'Connections from host.'
+    def insync?(is)
+      is.to_i == should.to_i
+    end
+
+    munge do |value|
+      @resource.munge_encryption(value)
+    end
+  end
+
+  newproperty(:tls_issuer) do
+    desc 'Certificate issuer.'
+  end
+
+  newproperty(:tls_subject) do
+    desc 'Certificate subject.'
+  end
+
+  newproperty(:tls_psk) do
+    desc 'The PSK to connect to this host.'
+  end
+
+  newproperty(:tls_psk_identity) do
+    desc 'The PSK identity to identify this host.'
+  end
+
+  newproperty(:purge_templates, boolean: true) do
+    desc 'Should we remove additional templates.'
+
+    newvalues(true, false)
+
+    munge do |value|
+      @resource.munge_boolean(value)
+    end
   end
 
   autorequire(:file) { '/etc/zabbix/api.conf' }
