@@ -1,8 +1,7 @@
 require 'spec_helper_acceptance'
 require 'serverspec_type_zabbixapi'
 
-# rubocop:disable RSpec/LetBeforeExamples
-describe 'zabbix_proxy type', unless: default[:platform] =~ %r{debian-10-amd64} do
+describe 'zabbix_proxy type' do
   context 'create zabbix_proxy resources' do
     # This will deploy a running Zabbix setup (server, web, db) which we can
     # use for custom type tests
@@ -20,7 +19,6 @@ describe 'zabbix_proxy type', unless: default[:platform] =~ %r{debian-10-amd64} 
       include postgresql::server
 
       class { 'zabbix':
-        zabbix_version   => '4.4',
         zabbix_url       => 'localhost',
         zabbix_api_user  => 'Admin',
         zabbix_api_pass  => 'zabbix',
