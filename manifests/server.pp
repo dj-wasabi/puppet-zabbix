@@ -103,6 +103,9 @@
 # [*starttimers*]
 #   Number of pre-forked instances of timers.
 #
+# [*startescalators*]
+#   Number of pre-forked instances of escalators.
+#
 # [*javagateway*]
 #   IP address (or hostname) of zabbix java gateway.
 #
@@ -240,6 +243,9 @@
 # [*sslkeylocation_dir*]
 #   Location of SSL private key files for client authentication.
 #
+# [*sslcalocation_dir*]
+#   Override the location of certificate authority (CA) files for SSL server certificate verification.
+#
 # [*manage_startup_script*]
 #  If the init script should be managed by this module. Attention: This might cause problems with some config options of this module (e.g server_configfile_path)
 #
@@ -316,6 +322,7 @@ class zabbix::server (
   $startdiscoverers                          = $zabbix::params::server_startdiscoverers,
   $starthttppollers                          = $zabbix::params::server_starthttppollers,
   $starttimers                               = $zabbix::params::server_starttimers,
+  $startescalators                           = $zabbix::params::server_startescalators,
   $javagateway                               = $zabbix::params::server_javagateway,
   $javagatewayport                           = $zabbix::params::server_javagatewayport,
   $startjavapollers                          = $zabbix::params::server_startjavapollers,
@@ -360,6 +367,7 @@ class zabbix::server (
   $loadmodule                                = $zabbix::params::server_loadmodule,
   $sslcertlocation_dir                       = $zabbix::params::server_sslcertlocation,
   $sslkeylocation_dir                        = $zabbix::params::server_sslkeylocation,
+  $sslcalocation_dir                         = $zabbix::params::server_sslcalocation
   Boolean $manage_selinux                    = $zabbix::params::manage_selinux,
   String $additional_service_params          = $zabbix::params::additional_service_params,
   Optional[String[1]] $zabbix_user           = $zabbix::params::server_zabbix_user,

@@ -250,6 +250,7 @@ class zabbix::params {
   $server_sshkeylocation                    = undef
   $server_sslcertlocation                   = '/usr/lib/zabbix/ssl/certs'
   $server_sslkeylocation                    = '/usr/lib/zabbix/ssl/keys'
+  $server_sslcalocation                     = undef
   $server_startdbsyncers                    = '4'
   $server_startdiscoverers                  = '1'
   $server_starthttppollers                  = '1'
@@ -261,6 +262,7 @@ class zabbix::params {
   $server_startproxypollers                 = '1'
   $server_startsnmptrapper                  = '0'
   $server_starttimers                       = '1'
+  $server_startescalators                   = '1'
   $server_starttrappers                     = '5'
   $server_startvmwarecollectors             = '0'
   $server_timeout                           = '3'
@@ -409,8 +411,8 @@ class zabbix::params {
   $proxy_tlsservercertsubject               = undef
   $proxy_tmpdir                             = '/tmp'
   $proxy_trappertimeout                     = '300'
-  $proxy_unavaliabledelay                   = '60'
-  $proxy_unreachabedelay                    = '15'
+  $proxy_unavailabledelay                   = '60'
+  $proxy_unreachabledelay                    = '15'
   $proxy_unreachableperiod                  = '45'
   $proxy_use_ip                             = true
   $proxy_vmwarecachesize                    = '8M'
