@@ -618,5 +618,35 @@ LoadModulePath=<%= @loadmodulepath %>
 # Default:
 # TLSCipherAll13=
 <% if @tlscipherall %>TLSCipherAll=<%= @tlscipherall %><% end %>
+<% end %>
 
+<% if @zabbix_version.to_f >= 5.2 %>
+### Option: VaultToken
+#	Vault authentication token that should have been generated exclusively for Zabbix server with read only permission
+#	to paths specified in Vault macros and read only permission to path specified in optional VaultDBPath
+#	configuration parameter.
+#	It is an error if VaultToken and VAULT_TOKEN environment variable are defined at the same time.
+#
+# Mandatory: no
+# Default:
+# VaultToken=
+<% if @vaulttoken %>VaultToken=<%= @vaulttoken -%><% end %>
+
+### Option: VaultURL
+#	Vault server HTTP[S] URL. System-wide CA certificates directory will be used if SSLCALocation is not specified.
+#
+# Mandatory: no
+# Default:
+# VaultURL=https://127.0.0.1:8200
+<% if @vaulturl %>VaultURL=<%= @vaulturl -%><% end %>
+
+### Option: VaultDBPath
+#	Vault path from where credentials for database will be retrieved by keys 'password' and 'username'.
+#	Example: secret/zabbix/database
+#	This option can only be used if DBUser and DBPassword are not specified.
+#
+# Mandatory: no
+# Default:
+# VaultDBPath=
+<% if @vaultdbpath %>VaultDBPath=<%= @vaultdbpath -%><% end %>
 <% end %>

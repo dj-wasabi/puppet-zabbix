@@ -422,6 +422,21 @@ describe 'zabbix::proxy' do
             it { is_expected.to contain_file('/etc/zabbix/zabbix_proxy.conf').without_content %r{^LogFileSize=} }
           end
         end
+
+        describe 'with zabbix_version 5.2 and Vault parameters defined' do
+          let :params do
+            {
+              zabbix_version: '5.2',
+              vaultdbpath: 'secret/zabbix/database',
+              vaulttoken: 'FKTYPEGL156DK',
+              vaulturl: 'https://127.0.0.1:8200',
+            }
+          end
+
+          it { is_expected.to contain_file('/etc/zabbix/zabbix_proxy.conf').with_content %r{^VaultDBPath=secret/zabbix/database$} }
+          it { is_expected.to contain_file('/etc/zabbix/zabbix_proxy.conf').with_content %r{^VaultToken=FKTYPEGL156DK$} }
+          it { is_expected.to contain_file('/etc/zabbix/zabbix_proxy.conf').with_content %r{^VaultURL=https://127.0.0.1:8200$} }
+        end
       end
     end
   end

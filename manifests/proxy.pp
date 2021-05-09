@@ -171,6 +171,16 @@
 # [*vmwarecachesize*]
 #   Size of vmware cache, in bytes.
 #
+# [*vaultdbpath*]
+#   Vault path from where credentials for database will be retrieved by keys 'password' and 'username'.
+#
+# [*vaulttoken*]
+#   Vault authentication token that should have been generated exclusively for Zabbix proxy with read-only
+#   permission to the path specified in the optional VaultDBPath configuration parameter.
+#
+# [*vaulturl*]
+#   Vault server HTTP[S] URL. System-wide CA certificates directory will be used if SSLCALocation is not specified.
+#
 # [*snmptrapperfile*]
 #   Temporary file used for passing data from snmp trap daemon to the server.
 #
@@ -413,6 +423,9 @@ class zabbix::proxy (
   $javagatewayport                                                            = $zabbix::params::proxy_javagatewayport,
   $startjavapollers                                                           = $zabbix::params::proxy_startjavapollers,
   $startvmwarecollectors                                                      = $zabbix::params::proxy_startvmwarecollectors,
+  Optional[String] $vaultdbpath                                               = $zabbix::params::proxy_vaultdbpath,
+  Optional[String] $vaulttoken                                                = $zabbix::params::proxy_vaulttoken,
+  Stdlib::HTTPUrl $vaulturl                                                   = $zabbix::params::proxy_vaulturl,
   $vmwarefrequency                                                            = $zabbix::params::proxy_vmwarefrequency,
   $vmwareperffrequency                                                        = $zabbix::params::proxy_vmwareperffrequency,
   $vmwarecachesize                                                            = $zabbix::params::proxy_vmwarecachesize,

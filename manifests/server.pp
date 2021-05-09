@@ -157,6 +157,16 @@
 # [*vmwarefrequency*]
 #   How often zabbix will connect to vmware service to obtain a new datan.
 #
+# [*vaultdbpath*]
+#   Vault path from where credentials for database will be retrieved by keys 'password' and 'username'.
+#
+# [*vaulttoken*]
+#   Vault authentication token that should have been generated exclusively for Zabbix proxy with read-only
+#   permission to the path specified in the optional VaultDBPath configuration parameter.
+#
+# [*vaulturl*]
+#   Vault server HTTP[S] URL. System-wide CA certificates directory will be used if SSLCALocation is not specified.
+#
 # [*vmwarecachesize*]
 #   Size of vmware cache, in bytes.
 #
@@ -393,6 +403,9 @@ class zabbix::server (
   $startjavapollers                                                           = $zabbix::params::server_startjavapollers,
   Integer[1, 100] $startlldprocessors                                         = $zabbix::params::server_startlldprocessors,
   $startvmwarecollectors                                                      = $zabbix::params::server_startvmwarecollectors,
+  Optional[String] $vaultdbpath                                               = $zabbix::params::server_vaultdbpath,
+  Optional[String] $vaulttoken                                                = $zabbix::params::server_vaulttoken,
+  Stdlib::HTTPUrl $vaulturl                                                   = $zabbix::params::server_vaulturl,
   $vmwarefrequency                                                            = $zabbix::params::server_vmwarefrequency,
   $vmwarecachesize                                                            = $zabbix::params::server_vmwarecachesize,
   $vmwaretimeout                                                              = $zabbix::params::server_vmwaretimeout,
