@@ -151,6 +151,16 @@ describe 'zabbix::agent' do
         it { is_expected.to contain_file(config_path).with_content %r{^HostInterfaceItem=system.hostname$} }
       end
 
+      context 'configuration file with hostinterfaceitem set to fqdn' do
+        let :params do
+          {
+            hostinterfaceitem: 'zabbix.example.com'
+          }
+        end
+
+        it { is_expected.to compile.and_raise_error(%r{.*}) }
+      end
+
       context 'configuration file with hostinterface' do
         let :params do
           {
