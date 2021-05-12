@@ -369,25 +369,27 @@ describe 'zabbix::agent' do
         context 'declare logtype as system' do
           let :params do
             {
-              logtype: 'system'
+              logtype: 'system',
+              logfilesize: '20'
             }
           end
 
           it { is_expected.to contain_file(config_path).with_content %r{^LogType=system$} }
+          it { is_expected.to contain_file(config_path).with_content %r{^LogFileSize=20} }
           it { is_expected.to contain_file(config_path).without_content %r{^LogFile=} }
-          it { is_expected.to contain_file(config_path).without_content %r{^LogFileSize=} }
         end
 
         context 'declare logtype as console' do
           let :params do
             {
-              logtype: 'console'
+              logtype: 'console',
+              logfilesize: '20'
             }
           end
 
           it { is_expected.to contain_file(config_path).with_content %r{^LogType=console$} }
+          it { is_expected.to contain_file(config_path).with_content %r{^LogFileSize=20} }
           it { is_expected.to contain_file(config_path).without_content %r{^LogFile=} }
-          it { is_expected.to contain_file(config_path).without_content %r{^LogFileSize=} }
         end
       end
     end

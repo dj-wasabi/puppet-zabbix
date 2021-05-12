@@ -232,16 +232,9 @@ class zabbix::params {
   $server_listenport                        = '10051'
   $server_loadmodule                        = undef
   $server_loadmodulepath                    = '/usr/lib/modules'
-  # provided by camptocamp/systemd
-  if $facts['systemd'] {
-    $server_logtype                          = 'system'
-    $server_logfile                          = undef
-    $server_logfilesize                      = undef
-  } else {
-    $server_logtype                          = 'file'
-    $server_logfile                          = '/var/log/zabbix/zabbix_server.log'
-    $server_logfilesize                      = '10'
-  }
+  $server_logtype                           = 'file'
+  $server_logfile                           = '/var/log/zabbix/zabbix_server.log'
+  $server_logfilesize                       = '10'
   $server_logslowqueries                    = '0'
   $server_maxhousekeeperdelete              = '500'
   $server_pidfile                           = '/var/run/zabbix/zabbix_server.pid'
@@ -355,13 +348,7 @@ class zabbix::params {
   $agent_zbx_templates                      = ['Template OS Linux', 'Template App SSH Service']
   $apache_status                            = false
   $monitored_by_proxy                       = undef
-  # provided by camptocamp/systemd
-  if $facts['systemd'] {
-    $agent_logtype                          = 'system'
-    $agent_logfile                          = undef
-    $agent_logfilesize                      = undef
-  }
-  elsif $facts['kernel'] == 'windows' {
+  if $facts['kernel'] == 'windows' {
     $agent_logtype                          = 'file'
     $agent_logfile                          = 'C:/ProgramData/zabbix/zabbix_agentd.log'
     $agent_logfilesize                      = '100'
@@ -402,16 +389,9 @@ class zabbix::params {
   $proxy_loadmodule                         = undef
   $proxy_loadmodulepath                     = '/usr/lib/modules'
   $proxy_localbuffer                        = '0'
-  # provided by camptocamp/systemd
-  if $facts['systemd'] {
-    $proxy_logtype                          = 'system'
-    $proxy_logfile                          = undef
-    $proxy_logfilesize                      = undef
-  } else {
-    $proxy_logtype                          = 'file'
-    $proxy_logfile                          = '/var/log/zabbix/zabbix_proxy.log'
-    $proxy_logfilesize                      = '10'
-  }
+  $proxy_logtype                            = 'file'
+  $proxy_logfile                            = '/var/log/zabbix/zabbix_proxy.log'
+  $proxy_logfilesize                        = '10'
   $proxy_logremotecommands                  = 0
   $proxy_logslowqueries                     = '0'
   $proxy_mode                               = '0'
