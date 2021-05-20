@@ -19,7 +19,7 @@ ExecReload=/usr/sbin/zabbix_server -R config_cache_reload
 Restart=on-abnormal
 PrivateTmp=yes
 ProtectSystem=full
-ProtectHome=yes
+ProtectHome=no
 <% if @zabbix_user %>User=<%= @zabbix_user %><% end %>
 
 [Install]
