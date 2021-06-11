@@ -135,6 +135,11 @@ class zabbix::repo (
         } else {
           if ($facts['os']['distro'][id] == 'Raspbian') {
             $operatingsystem = 'raspbian'
+          } elsif ($facts['os']['architecture'] == 'aarch64' and $facts['os']['distro']['codename'] == 'focal') {
+            $operatingsystem = 'ubuntu-arm64'
+            if versioncmp($zabbix_version, '5.0') < 0 {
+              fail('Only packages for zabbix version 5.0 and newer are available for arm64!')
+            }
           } else {
             $operatingsystem = downcase($facts['os']['name'])
           }
