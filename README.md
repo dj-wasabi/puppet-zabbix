@@ -7,7 +7,7 @@
 [![Puppet Forge - endorsement](https://img.shields.io/puppetforge/e/puppet/zabbix.svg)](https://forge.puppetlabs.com/puppet/zabbix)
 [![Puppet Forge - scores](https://img.shields.io/puppetforge/f/puppet/zabbix.svg)](https://forge.puppetlabs.com/puppet/zabbix)
 
-#### Table of Contents
+## Table of Contents
 
 1. [Overview](#overview)
 2. [Upgrade](#upgrade)
